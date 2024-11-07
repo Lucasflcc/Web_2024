@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DOM</title>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="description" content="Repositório da disciplina PWM 2024.2" />
+  </head>
+  <body>
+    <h1></h1>JavaScript Document Object Model e Eventos</h1><br><br>
+
+    <p id="texto">Texto original</p><br>
+
+    <button type="button" onclick="alert('Bem-vindo(a) ao nosso site!')"> Clique para receber uma mensagem</button><br>
+    <button type="button" onclick="flipColor()"> Mudar Cor de Fundo</button><br>
+    <button type="button" onclick="showUrl()"> Mostrar URL</button><br>
+    <button type="button" onclick="history()">Voltar à página anterior</button><br>
+    <button type="button" onclick="checkCookies()" id="ck">Verificar Cookies</button><br>
+
+    <p id="url"></p><br>
+    <p id="hist"></p><br>
+    <p id="cookie"></p><br>
+    <div onmouseover="into(this)" onmouseout="out(this)" width="60" height="32">Algum texto</div><br>
+    <input type="text" id="text" autocomplete="off" onkeydown="writing(event)" placeholder="...">
+    <p id="typing"></p><br>
+    <p>A última parte só deu mais ou menos com onkeydown="return /[a-zA-Z]/i.test(event.key)" mas não pega como o desejado</p>
+
+    <script>
+        document.getElementById("texto").innerHTML = "Texto atualizado via DOM";
+        document.getElementById("hist").innerHTML = "Number of URLs in history list: " + h;
+        document.getElementById("ck").addEventListener("click", navigator.cookieEnabled)
+
+        var color = "white";
+        var origin = window.location.origin;
+        var h = history.length;
+
+        function flipColor(){
+
+          if(color == "white"){
+          document.body.style.backgroundColor = "blue";
+          color = "blue"
+          }
+
+          else{
+          document.body.style.backgroundColor = "white";
+          color = "white"
+          }
+        }
+
+        function showUrl(){
+          document.getElementById("url").innerHTML = origin;
+        }
+
+        function history(){
+          if(h > 1){
+            history.back();
+          }
+          else{
+            document.getElementById("hist").innerHTML = "Não existem páginas visitadas anterirormente";
+          }
+        }
+
+        function checkCookies(){
+          if(navigator.cookieEnabled == true){
+            document.getElementById("cookie").innerHTML = "Cookies estão abilitados";
+          }
+          else{
+            document.getElementById("cookie").innerHTML = "Cookies estão desabilitados";
+          }
+        }
+
+        function into(x){
+          x.style.backgroundColor = "green"
+        }
+
+        function out(x){
+          x.style.backgroundColor = "chocolate"
+        }
+
+        function writing(event){
+          var key = event.key;
+          if(key == "0" || key == "1" || key == "2" || key == "3" || key == "4" || key == "5" || key == "6" || key == "7" || key == "8" || key == "9"){
+            document.getElementById("text").value = "";
+          }
+          else{
+          document.getElementById("typing").innerHTML = "The key '" + key + "' was pressed.";
+          document.getElementById("text").value = "";
+          }
+
+        }
+    </script>
+
+  </body>
+</html>
